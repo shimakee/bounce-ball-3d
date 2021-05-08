@@ -134,9 +134,9 @@ GameObject:
   - component: {fileID: 169629534}
   - component: {fileID: 169629533}
   - component: {fileID: 169629540}
-  - component: {fileID: 169629539}
   - component: {fileID: 169629538}
   - component: {fileID: 169629537}
+  - component: {fileID: 169629539}
   m_Layer: 12
   m_Name: Ball
   m_TagString: Untagged
@@ -151,7 +151,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169629532}
-  m_Material: {fileID: 13400000, guid: 1c78ebf4b92091944b60d83996eb0df7, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -282,6 +282,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 483c29be-0a94-44a5-af59-740b712ce1f8
     m_ActionName: defaultActionMap/Camera[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5096df2a-7811-4633-94d4-bafa9fef989f
+    m_ActionName: defaultActionMap/MousePosition[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 40e0679d-f945-4125-b8f7-eff276b7266f
+    m_ActionName: defaultActionMap/MouseClick[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: defaultActionMap
@@ -299,13 +307,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e92685e8e3c0ab459d6736c3159c137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 7
+  jumpForce: 5
   groundedCheckerHeight: 0.25
   groundedCheckerSize: 0.5
   groundCollision:
     serializedVersion: 2
     m_Bits: 256
   _isGrounded: 0
+  _fallMultiplier: 0.05
 --- !u!114 &169629539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,7 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swapYToZ: 1
   speed: 1
-  Maxspeed: 4
+  Maxspeed: 5
 --- !u!54 &169629540
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1212,7 +1221,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 963194232}
-        m_MethodName: HandleCameraInputJoystick
+        m_MethodName: HandleCameraInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1225,18 +1234,7 @@ MonoBehaviour:
     m_ActionId: 483c29be-0a94-44a5-af59-740b712ce1f8
     m_ActionName: defaultActionMap/Camera[/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 963194232}
-        m_MethodName: HandleCameraInputMouse
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 0
+      m_Calls: []
     m_ActionId: 5096df2a-7811-4633-94d4-bafa9fef989f
     m_ActionName: defaultActionMap/MousePosition[/Mouse/position]
   - m_PersistentCalls:

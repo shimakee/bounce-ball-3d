@@ -19,7 +19,7 @@
                     "id": "35ee18f1-a3fb-458e-96be-ecc2f554c676",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Hold,Tap"
                 },
                 {
                     "name": "Dash",

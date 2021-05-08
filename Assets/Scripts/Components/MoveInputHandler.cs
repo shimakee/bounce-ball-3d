@@ -12,7 +12,7 @@ public class MoveInputHandler : MonoBehaviour
     [SerializeField]
     [Range(0,1)] private float speed = 1;
     [SerializeField]
-    [Range(0, 100)] private float Maxspeed = 4;
+    [Range(0, 100)] private float Maxspeed = 5;
 
     private Vector3 _direction { get; set; }
     private Rigidbody _rb { get; set; }
@@ -28,7 +28,7 @@ public class MoveInputHandler : MonoBehaviour
     private void FixedUpdate()
     {
         _rb.velocity += _direction * speed;
-        Vector3.ClampMagnitude(_rb.velocity, Maxspeed);
+        _rb.velocity = Vector3.ClampMagnitude(_rb.velocity, Maxspeed);
     }
 
 
