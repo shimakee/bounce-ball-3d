@@ -10,7 +10,9 @@ public class MoveInputHandler : MonoBehaviour
     [SerializeField]
     private bool swapYToZ = true;
     [SerializeField]
-    [Range(0,100)] private float speed = 10;
+    [Range(0,1)] private float speed = 1;
+    [SerializeField]
+    [Range(0, 100)] private float Maxspeed = 4;
 
     private Vector3 _direction { get; set; }
     private Rigidbody _rb { get; set; }
@@ -31,13 +33,17 @@ public class MoveInputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _rb.velocity = _direction * speed;
+    }
+
+    private void FixedUpdate()
+    {
+        _rb.velocity += _direction * speed;
+        Vector3.ClampMagnitude(_rb.velocity, Maxspeed);
     }
 
 
     public void HandleMoveInput(CallbackContext context)
     {
-
         if (context.performed)
             _direction = context.ReadValue<Vector2>();
         if (context.canceled)
