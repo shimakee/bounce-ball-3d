@@ -8,7 +8,9 @@ using static UnityEngine.InputSystem.InputAction;
 public class MoveInputHandler : MonoBehaviour
 {
     [SerializeField]
-    private bool swapYToZ = true;
+    private Camera cameraReference;
+    [SerializeField]
+    private bool isMovementRelativeToCamera = true;
     [SerializeField]
     [Range(0,1)] private float speed = 1;
     [SerializeField]
@@ -23,6 +25,9 @@ public class MoveInputHandler : MonoBehaviour
 
         if (_rb == null)
             throw new NullReferenceException("Rigidbody cannot be null.");
+
+        if (cameraReference == null)
+            cameraReference = Camera.main;
     }
 
     private void FixedUpdate()
@@ -41,7 +46,19 @@ public class MoveInputHandler : MonoBehaviour
         if (context.canceled)
             _direction = context.ReadValue<Vector2>();
 
-        if (swapYToZ)
+        if (isMovementRelativeToCamera)
+        {
+            Vector3 forwardDirection = cameraReference.transform.forward * _direction.y;
+            forwardDirection.y = 0;
+            Vector3 rightDirection = cameraReference.transform.right * _direction.x;
+            rightDirection.y = 0;
+
+            _direction = forwardDirection + rightDirection;
+            _direction = _direction.normalized;
+        }
+        else
+        {
             _direction = new Vector3(_direction.x, _direction.z, _direction.y);
+        }
     }
 }

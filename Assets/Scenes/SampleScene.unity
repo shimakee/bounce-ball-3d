@@ -339,7 +339,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa92475c39199894ab0d7c30910285e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swapYToZ: 1
+  cameraReference: {fileID: 0}
+  isMovementRelativeToCamera: 1
   speed: 1
   Maxspeed: 5
 --- !u!54 &169629540
@@ -375,7 +376,7 @@ MonoBehaviour:
     m_Bits: 256
   distance: 5
   distanceDelta: 0.5
-  cooldown: 5
+  cooldown: 3
 --- !u!1 &401443073
 GameObject:
   m_ObjectHideFlags: 0
