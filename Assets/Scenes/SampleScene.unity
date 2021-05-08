@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 169629534}
   - component: {fileID: 169629533}
   - component: {fileID: 169629540}
+  - component: {fileID: 169629542}
   - component: {fileID: 169629538}
   - component: {fileID: 169629539}
   - component: {fileID: 169629541}
@@ -302,6 +303,21 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 40e0679d-f945-4125-b8f7-eff276b7266f
     m_ActionName: defaultActionMap/MouseClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 169629542}
+        m_MethodName: HandleSmashInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fa995363-a17e-4f17-a98e-9740dfb9448a
+    m_ActionName: defaultActionMap/Smash[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: defaultActionMap
@@ -319,13 +335,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e92685e8e3c0ab459d6736c3159c137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsGrounded: 0
   jumpForce: 5
   groundedCheckerHeight: 0.25
   groundedCheckerSize: 0.5
   groundCollision:
     serializedVersion: 2
     m_Bits: 256
-  _isGrounded: 0
   _fallMultiplier: 0.05
 --- !u!114 &169629539
 MonoBehaviour:
@@ -377,6 +393,24 @@ MonoBehaviour:
   distance: 5
   distanceDelta: 0.5
   cooldown: 3
+--- !u!114 &169629542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169629532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d31302eec2334f4686c75cd3763e655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 256
+  distanceDelta: 0.01
+  threshhold: 2
+  cooldown: 0
 --- !u!1 &401443073
 GameObject:
   m_ObjectHideFlags: 0

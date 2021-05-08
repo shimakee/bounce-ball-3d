@@ -8,6 +8,8 @@ using static UnityEngine.InputSystem.InputAction;
 [RequireComponent(typeof(Rigidbody))]
 public class JumpInputHandler : MonoBehaviour
 {
+    public bool IsGrounded;
+
     [SerializeField]
     [Range(0, 100)]private float jumpForce = 5;
     [SerializeField]
@@ -16,8 +18,6 @@ public class JumpInputHandler : MonoBehaviour
     [Range(0, 1)] private float groundedCheckerSize = .25f;
     [SerializeField]
     private LayerMask groundCollision;
-    [SerializeField]
-    private bool _isGrounded;
     [SerializeField]
     [Range(0, 1)] private float _fallMultiplier = .05f;
 
@@ -50,11 +50,12 @@ public class JumpInputHandler : MonoBehaviour
         {
             if(context.interaction is HoldInteraction)
             {
-                Jump(jumpForce * 1.5f);
+                if (IsGrounded)
+                    Jump(jumpForce * 1.5f);
             }
             else
             {
-                if(_isGrounded)
+                if(IsGrounded)
                     Jump(jumpForce);
             }
         }
@@ -79,9 +80,9 @@ public class JumpInputHandler : MonoBehaviour
         Collider[] collided = Physics.OverlapSphere(position, groundedCheckerSize, groundCollision);
 
         if (collided.Length > 0)
-            _isGrounded = true;
+            IsGrounded = true;
         else
-            _isGrounded = false;
+            IsGrounded = false;
     }
 
     private void FallQuicker()

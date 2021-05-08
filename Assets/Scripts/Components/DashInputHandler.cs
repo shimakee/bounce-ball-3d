@@ -34,9 +34,6 @@ public class DashInputHandler : MonoBehaviour
             throw new NullReferenceException("Rigidbody cannot be null");
     }
 
-    private void Update()
-    {
-    }
     private void FixedUpdate()
     {
         if(_isDashing)
