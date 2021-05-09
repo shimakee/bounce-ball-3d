@@ -17,6 +17,7 @@ public class TimedDisable : MonoBehaviour
 
     private MeshCollider collider;
     private MeshRenderer renderer;
+    private bool hasStarted;
 
     private void Awake()
     {
@@ -26,29 +27,32 @@ public class TimedDisable : MonoBehaviour
 
     private void Start()
     {
-        material.color = Color.green;
+        //material.color = Color.green;
+        renderer.material.color = Color.green;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
 
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" && !hasStarted)
             StartCoroutine(DisablePlatform());
     }
 
     private IEnumerator DisablePlatform()
     {
-        material.color = Color.yellow;
+        hasStarted = true;
+        renderer.material.color = Color.yellow;
         yield return new WaitForSeconds(timerDurationDisappear/2);
-        material.color = Color.red;
+        renderer.material.color = Color.red;
         yield return new WaitForSeconds(timerDurationDisappear / 2);
         collider.enabled = false;
         renderer.enabled = false;
         //this.gameObject.SetActive(false);
         yield return new WaitForSeconds(timerDurationAppear);
         //this.gameObject.SetActive(true);
-        material.color = Color.green;
+        renderer.material.color = Color.green;
         collider.enabled = true;
         renderer.enabled = true;
+        hasStarted = false;
     }
 }

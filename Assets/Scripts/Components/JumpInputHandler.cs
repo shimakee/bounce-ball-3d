@@ -19,7 +19,11 @@ public class JumpInputHandler : MonoBehaviour
     [SerializeField]
     private LayerMask groundCollision;
     [SerializeField]
-    [Range(0, 1)] private float _fallMultiplier = .05f;
+    [Range(0, 1)] 
+    private float _fallMultiplier = .05f;
+    [SerializeField]
+    [Range(0, 1)]
+    private float cayoteTimeDuration = .5f;
 
     private Rigidbody _rb { get; set; }
 
@@ -82,12 +86,20 @@ public class JumpInputHandler : MonoBehaviour
         if (collided.Length > 0)
             IsGrounded = true;
         else
-            IsGrounded = false;
+        {
+            StartCoroutine(CayoteTime());
+        }
     }
 
     private void FallQuicker()
     {
         if (_rb.velocity.y < 0)
             _rb.velocity += Vector3.up * Physics.gravity.y * _fallMultiplier;
+    }
+
+    private IEnumerator CayoteTime()
+    {
+        yield return new WaitForSeconds(cayoteTimeDuration);
+        IsGrounded = false;
     }
 }
