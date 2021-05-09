@@ -18,6 +18,9 @@ public class SmashInputHandler : MonoBehaviour
     [SerializeField]
     [Range(0, 30)]
     private float cooldown = 0f;
+    [SerializeField]
+    [Range(0, 10)]
+    private float contactRadius = 2f;
 
     private bool _isSmashing { get; set; }
     private bool _canSmash { get; set; } = true;
@@ -81,6 +84,21 @@ public class SmashInputHandler : MonoBehaviour
         else
         {
             _rb.position = (_rb.position - hitInfo.point) / 2 + hitInfo.point;
+            DestroyObjects();
+        }
+    }
+
+    private void DestroyObjects()
+    {
+        Collider[] collided = Physics.OverlapSphere(_rb.position, contactRadius, collisionMask);
+
+        if(collided.Length > 0)
+        {
+            foreach (var collision in collided)
+            {
+                if (collision.tag == "Destructables")
+                    Destroy(collision.gameObject);
+            }
         }
     }
 }
