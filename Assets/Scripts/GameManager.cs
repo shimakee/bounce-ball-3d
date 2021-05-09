@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
+    public bool HasKey;
+
     public Vector3 respawnPoint { get; set; }
     // Start is called before the first frame update
     void Start()
@@ -53,10 +55,8 @@ public class GameManager : MonoBehaviour
         DoorTriggerLeave?.Invoke(id);
     }
 
-    public static event Action KeyGet;
-
-    public static void OnKeyGet()
+    public void OnKeyGet()
     {
-        KeyGet?.Invoke();
+        HasKey = true;
     }
 }
