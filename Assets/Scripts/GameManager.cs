@@ -27,4 +27,36 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    public static event Action<int> ShootTriggerEnter;
+    public static event Action<int> ShootTriggerLeave;
+
+
+    public static void OnShootTriggerEnter(int id)
+    {
+        ShootTriggerEnter?.Invoke(id);
+    }
+    public static void OnShootTriggerLeave(int id)
+    {
+        ShootTriggerLeave?.Invoke(id);
+    }
+
+    public static event Action<int> DoorTriggerEnter;
+    public static event Action<int> DoorTriggerLeave;
+
+    public static void OnDoorTriggerEnter(int id)
+    {
+        DoorTriggerEnter?.Invoke(id);
+    }
+    public static void OnDoorTriggerLeave(int id)
+    {
+        DoorTriggerLeave?.Invoke(id);
+    }
+
+    public static event Action KeyGet;
+
+    public static void OnKeyGet()
+    {
+        KeyGet?.Invoke();
+    }
 }
