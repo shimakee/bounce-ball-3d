@@ -37,8 +37,18 @@ public class OrbitAround : MonoBehaviour
     [Header("Limit")]
     [SerializeField]
     [Range(0, 100)] private float YLimitMin = 0;
+
     [SerializeField]
     [Range(0, 100)] private float YLimitMax = 7;
+
+    [SerializeField]
+    private bool clampX;
+
+    [SerializeField]
+    private bool clampY;
+
+    [SerializeField]
+    private bool clampZ;
 
     private Vector3 _newPosition;
     private float _time;
@@ -73,11 +83,20 @@ public class OrbitAround : MonoBehaviour
 
     private void AdjustOrbit(float adjustment)
     {
-        _newPosition.x = _newPosition.x + Mathf.Cos(adjustment * Mathf.Deg2Rad) * radius;
+        if(!clampX)
+            _newPosition.x = _newPosition.x + Mathf.Cos(adjustment * Mathf.Deg2Rad) * radius;
+
+       
         if (swapZtoY)
-            _newPosition.z = _newPosition.z + Mathf.Sin(adjustment * Mathf.Deg2Rad) * radius;
+        {
+            if(!clampY)
+                _newPosition.z = _newPosition.z + Mathf.Sin(adjustment * Mathf.Deg2Rad) * radius;
+        }
         else
-            _newPosition.y = _newPosition.y + Mathf.Sin(adjustment * Mathf.Deg2Rad) * radius;
+        {
+            if(!clampZ)
+                _newPosition.y = _newPosition.y + Mathf.Sin(adjustment * Mathf.Deg2Rad) * radius;
+        }
     }
 
     public void Orbit(Vector2 direction)
